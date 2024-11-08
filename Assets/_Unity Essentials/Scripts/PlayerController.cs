@@ -40,6 +40,13 @@ public class PlayerController : MonoBehaviour
         float turn = Input.GetAxis("Horizontal") * rotationSpeed * Time.fixedDeltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         rb.MoveRotation(rb.rotation * turnRotation);
+
+        //Jump Ability
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Jump Man!!!");
+            rb.AddForce(0, 0.18f, 0, ForceMode.Impulse);
+        }
     }
     
     //updates the UI elements that the player needs to influence
