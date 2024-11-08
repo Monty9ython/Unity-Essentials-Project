@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Controls player movement and rotation.
@@ -7,6 +9,9 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f; // Set player's movement speed.
     public float rotationSpeed = 120.0f; // Set player's rotation speed.
+
+    [SerializeField] int playerScore;
+    [SerializeField] TMP_Text scoreText;
 
     private Rigidbody rb; // Reference to player's Rigidbody.
 
@@ -19,7 +24,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        updateScoreUI();
     }
 
 
@@ -36,4 +41,35 @@ public class PlayerController : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         rb.MoveRotation(rb.rotation * turnRotation);
     }
+    
+    //updates the UI elements that the player needs to influence
+    void updateScoreUI()
+    {
+        scoreText.text= Convert.ToString(playerScore);
+    }
+
+    //method to increment the player's score
+    void scoreIncrement()
+    {
+        playerScore += 1;
+    }
+    void scoreDecrement()
+    {
+        playerScore -= 1;
+    }
+
+    //checks whether the player collides with any GameObject that has the tag 'Collectible'
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Collectible"))
+        {
+            scoreIncrement();
+        }
+        else if (other.CompareTag("Furniture"))
+        {
+            Debug.Log("Ouch!");
+            scoreDecrement();
+        }
+    }
+
 }

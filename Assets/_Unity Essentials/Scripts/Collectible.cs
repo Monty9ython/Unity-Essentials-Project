@@ -7,6 +7,7 @@ using System;
 public class Collectible : MonoBehaviour
 {
     [SerializeField] float yRotation = 0.5f;
+    [SerializeField] GameObject onCollectEffect;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class Collectible : MonoBehaviour
         if (other.tag== "Player" )
         {
             Debug.Log("Score!!!");
+            Instantiate(onCollectEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

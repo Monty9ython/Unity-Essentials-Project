@@ -7,20 +7,20 @@ using System;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] GameObject player;
 
+    
 
     private void Start()
     {
         scoreText.text = "Hello World";
     }
 
-    void scoreIncrement()
+    private void Update()
     {
-
+       
     }
+   
 
-    void scoreDecrement()
-    {
 
-    }
 }

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Crate
   - Dirt
+  - CinemachineTarget
+  - Collectible
+  - Furniture
   layers:
   - Default
   - TransparentFX
