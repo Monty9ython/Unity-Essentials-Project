@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5.0f; // Set player's movement speed.
     public float rotationSpeed = 120.0f; // Set player's rotation speed.
+    public float jumpForce = 5.0f;
 
     [SerializeField] int playerScore;
     [SerializeField] TMP_Text scoreText;
@@ -42,10 +43,10 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation(rb.rotation * turnRotation);
 
         //Jump Ability
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             Debug.Log("Jump Man!!!");
-            rb.AddForce(0, 0.18f, 0, ForceMode.Impulse);
+            rb.AddForce(Vector3.up*jumpForce,ForceMode.VelocityChange);
         }
     }
     
